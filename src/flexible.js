@@ -18,15 +18,16 @@
     } else if (flexibleEl) {
         var content = flexibleEl.getAttribute('content');
         if (content) {
-            var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
             var maximumDpr = content.match(/maximum\-dpr=([\d\.]+)/);
-            if (initialDpr) {
-                dpr = parseFloat(initialDpr[1]);
-                scale = parseFloat((1 / dpr).toFixed(2));    
-            }
             if (maximumDpr) {
                 dpr = parseFloat(maximumDpr[1]);
                 scale = parseFloat((1 / dpr).toFixed(2));    
+            } else {
+                var initialDpr = content.match(/initial\-dpr=([\d\.]+)/);
+                if (initialDpr) {
+                    dpr = parseFloat(initialDpr[1]);
+                    scale = parseFloat((1 / dpr).toFixed(2));    
+                }
             }
         }
     }
